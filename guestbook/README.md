@@ -29,6 +29,8 @@ To completely uninstall/delete the `my-app` deployment:
 
 ```
 $ helm delete --purge my-app
+$ helm repo remove helm-repo
+$ helm repo list
 ```
 
 The command removes all the Kubernetes components associated with the chart and deletes the release.
