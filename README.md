@@ -4,10 +4,16 @@ This is an example charts repository.
 
 How It Works
 
-I set up GitHub Pages to point to the docs folder. From there, I can create and publish docs like this:
+
+Create github repository and create docs folder in root directory.
+
+The docs folder contains index.html file
+
+set up GitHub Pages to point to the docs folder. 
 
 
 
+From there, I can create and publish docs like this:
 
 
 ```
