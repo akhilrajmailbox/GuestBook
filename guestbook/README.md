@@ -8,7 +8,7 @@ The chart installs a [guestbook](https://github.com/kubernetes/examples/tree/mas
 
 Add the repository to your local environment:
 ```
-$ helm repo add helm-repo https://github.com/akhilrajmailbox/GuestBook-helm/
+$ helm repo add helm-repo https://akhilrajmailbox.github.io/GuestBook/docs
 ```
 
 To install the chart with the default release name:
