@@ -14,5 +14,6 @@ resources:
   memory: 100Mi
 
 service:
-  type: NodePort
+  type: ClusterIP
+  # type: NodePort
   port: 80
