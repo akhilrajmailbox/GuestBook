@@ -1,4 +1,4 @@
-# GuestBook-helm
+# GuestBook
 
 This is an example charts repository.
 
