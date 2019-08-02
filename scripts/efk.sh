@@ -2,7 +2,7 @@
 # link :: https://mherman.org/blog/logging-in-kubernetes-with-elasticsearch-Kibana-fluentd/
 
 ################################################
-function efk-server() {
+function efk_server() {
     # creating namespace called logging
     kubectl apply -f ../efk/namespace.yaml
 
@@ -21,8 +21,8 @@ function efk-server() {
 
 
 ################################################
-function efk-info() {
-    efk-server
+function efk_info() {
+    efk_server
     echo "the logs need to have format > timestampFormat: YYYY-MM-DD HH:mm:ss.SSS"
     sleep 20
     if [[ $(kubectl -n logging get services kibana -o jsonpath="{.spec.type}") == NodePort ]] ; then
@@ -35,4 +35,4 @@ function efk-info() {
 }
 
 
-efk-info
+efk_info

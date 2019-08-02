@@ -5,7 +5,7 @@
 
 
 ################################################
-function metrics-server() {
+function metrics_server() {
     echo "configuring metrics-server in kubernetes"
 	kubectl apply -f ../metrics-server/
     sleep 20
@@ -13,7 +13,7 @@ function metrics-server() {
 
 ################################################
 function namespace() {
-    metrics-server
+    metrics_server
     echo "creating namespace : monitoring in kubernetes cluster"
     kubectl create namespace monitoring
     sleep 20
@@ -25,7 +25,7 @@ function namespace() {
 }
 
 ################################################
-function prometheus-server() {
+function prometheus_server() {
     namespace
     echo "Deploying prometheus in kubernetes"
     helm install stable/prometheus \
@@ -39,8 +39,8 @@ function prometheus-server() {
 }
 
 ################################################
-function grafana-server() {
-    prometheus-server
+function grafana_server() {
+    prometheus_server
     echo "Deploying grafana in kubernetes"
     helm install stable/grafana \
         --name grafana \
@@ -59,8 +59,8 @@ function grafana-server() {
 
 
 ################################################
-function grafana-url() {
-    prometheus-server
+function grafana_url() {
+    grafana_server
     sleep 20
     if [[ $(kubectl -n monitoring get services grafana -o jsonpath="{.spec.type}") == NodePort ]] ; then
         export NODE_PORT=$(kubectl get --namespace monitoring -o jsonpath="{.spec.ports[0].nodePort}" services grafana)
@@ -73,8 +73,8 @@ function grafana-url() {
 
 
 ################################################
-function grafana-dashboard() {
-    grafana-url
+function grafana_dashboard() {
+    grafana_url
 cat << EOF
     Import these two dashboard to the grafana ui with the following id to get better experience in kubernetes management
     3146    >   Kubernetes Pods
@@ -83,4 +83,4 @@ EOF
 }
 
 
-grafana-dashboard
+grafana_dashboard

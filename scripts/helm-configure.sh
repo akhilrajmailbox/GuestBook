@@ -4,7 +4,7 @@
 
 
 ################################################
-function helm-config() {
+function helm_config() {
     echo "installing helm in your system"
     curl -L https://git.io/get_helm.sh | bash
 
@@ -17,4 +17,4 @@ function helm-config() {
     helm init --service-account tiller --upgrade
 }
 
-helm-config
+helm_config

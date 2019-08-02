@@ -2,7 +2,7 @@
 # link : https://github.com/luxas/kubeadm-workshop
 
 ################################################
-function rook-block() {
+function rook_block() {
     kubectl apply -f ../rook-block/rook-operator.yaml
     kubectl apply -f ../rook-block/rook-cluster.yaml
     kubectl apply -f ../rook-block/rook-storageclass.yaml
@@ -12,4 +12,4 @@ function rook-block() {
 }
 
 
-rook-block
+rook_block
