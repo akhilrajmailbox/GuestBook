@@ -55,3 +55,35 @@ Specify each parameter using the `--set [key=value]` argument to `helm install`.
 ```
 $ helm install helm-repo/guestbook --set service.port=8080
 ```
+
+
+
+### This is an example charts repository.
+
+How It Works
+
+Create github repository and create docs folder in root directory.
+
+The docs folder contains index.html file
+
+set up GitHub Pages to point to the docs folder. 
+
+
+
+From there, I can create and publish docs like this:
+
+
+```
+$ helm create guestbook
+$ helm package guestbook
+$ mv guestbook-0.1.0.tgz docs
+$ helm repo index docs --url https://akhilrajmailbox.github.io/GuestBook/docs
+$ git add -i
+$ git commit -av
+$ git push origin master
+```
+
+add helm repo to your system and install.
+```
+helm repo add helm-repo https://akhilrajmailbox.github.io/GuestBook/docs
+```
