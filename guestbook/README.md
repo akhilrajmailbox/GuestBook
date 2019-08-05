@@ -11,16 +11,10 @@ Add the repository to your local environment:
 $ helm repo add helm-repo https://akhilrajmailbox.github.io/GuestBook/docs
 ```
 
-To install the chart with the default release name:
-
-```
-$ helm install helm-repo/guestbook
-```
-
 To install the chart with your preference of release name, for example, `my-app`:
 
 ```
-$ helm install helm-repo/guestbook --name my-app
+$ helm install --namespace production helm-repo/guestbook --name my-app
 ```
 
 ### Uninstalling the Chart
