@@ -201,7 +201,7 @@ node5
 
 - Now run the following command to scale your cluster:
 ```
-$ ansible-playbook -i inventory/mycluster/hosts.yaml scale.yml --private-key=K8s.pem
+$ ansible-playbook -i inventory/mycluster/hosts.yaml scale.yml --private-key=K8s.pem --flush-cache -s
 ```
 
 
@@ -217,7 +217,7 @@ node5
 ```
 - Now run the following command to scale your cluster:
 ```
-$ ansible-playbook -i inventory/mycluster/hosts.yaml remove-node.yml --private-key=K8s.pem
+$ ansible-playbook -i inventory/mycluster/hosts.yaml remove-node.yml --private-key=K8s.pem --flush-cache -s
 ```
 
 3. Reset the entire cluster for fresh installation:
@@ -225,5 +225,5 @@ $ ansible-playbook -i inventory/mycluster/hosts.yaml remove-node.yml --private-k
 Keep the “hosts.ini” updated properly with all servers mentioned in the correct sections, and run   the following command:
 
 ```
-$ ansible-playbook -i inventory/mycluster/hosts.yaml reset.yml --private-key=K8s.pem
+$ ansible-playbook -i inventory/mycluster/hosts.yaml reset.yml --private-key=K8s.pem --flush-cache -s
 ```
