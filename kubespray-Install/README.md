@@ -20,7 +20,8 @@ Tools to be installed on the K8s Manager
     Python-netaddr
     Jinja 2.9
 
-run the following commands to configure the K8s Manager
+run the following commands to configure the K8s Manager.
+This script will download and configure all the dependencies and will clone the latest code for [kubespray](https://github.com/kubernetes-incubator/kubespray.git)
 
 ```
 ./base_machine.sh
@@ -159,10 +160,14 @@ $ ansible-playbook -i inventory/mycluster/hosts.yaml cluster.yml --private-key=K
 ## Check your Deployment
 Now SSH into the Master Node and check your installation
 
-Command to fetch nodes in the namespace ‘kube-system’
+```
+$ export KUBECONFIG=/etc/kubernetes/admin.conf
+```
+
+Command to fetch nodes
 
 ```
-$ kubectl -n kube-system get nodes
+$ kubectl get nodes
 ```
 
 Command to fetch services in the namespace ‘kube-system’
@@ -212,7 +217,7 @@ node5
 ```
 - Now run the following command to scale your cluster:
 ```
-$ ansible-playbook -i inventory/mycluster/hosts.yaml cluster.yml --private-key=K8s.pem  remove-node.yml
+$ ansible-playbook -i inventory/mycluster/hosts.yaml remove-node.yml --private-key=K8s.pem
 ```
 
 3. Reset the entire cluster for fresh installation:

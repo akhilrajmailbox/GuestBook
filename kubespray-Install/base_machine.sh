@@ -7,7 +7,7 @@ export LC_ALL="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
 # sudo dpkg-reconfigure locales
 # sudo update-locale LANG=en_US.UTF-8
-dpkg-reconfigure --frontend noninteractive locales
+sudo dpkg-reconfigure --frontend noninteractive locales
 
 sudo apt-get update
 sudo apt-get install software-properties-common git
@@ -17,7 +17,7 @@ sudo apt-get install ansible -y
 sudo apt-get install python-pip -y
 sudo apt-get install python3-pip -y
 pip2 install jinja2 --upgrade
-sudo apt-get install python-netaddr
+sudo apt-get install python-netaddr -y
 sudo sysctl net.ipv4.ip_forward
 sudo sysctl -w net.ipv4.ip_forward=1
 sudo ufw disable
