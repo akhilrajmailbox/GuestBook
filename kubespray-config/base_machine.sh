@@ -10,7 +10,7 @@ export LC_CTYPE="en_US.UTF-8"
 dpkg-reconfigure --frontend noninteractive locales
 
 sudo apt-get update
-sudo apt-get install software-properties-common
+sudo apt-get install software-properties-common git
 sudo apt-add-repository ppa:ansible/ansible -y
 sudo apt-get update
 sudo apt-get install ansible -y
@@ -22,6 +22,8 @@ sudo sysctl net.ipv4.ip_forward
 sudo sysctl -w net.ipv4.ip_forward=1
 sudo ufw disable
 
+
+git clone https://github.com/kubernetes-incubator/kubespray.git
 cd kubespray
 pip3  install -r contrib/inventory_builder/requirements.txt
 sudo pip install -r requirements.txt
