@@ -8,8 +8,12 @@ I have an AWS account, I will be using it to spin up 5 Ubuntu machines. (2 maste
 OS: Ubuntu 16.04
 Number of Instances: 5
 Configure all Instances with same ssh key
+The ssh user for ubuntu system in AWS have passwordless sudo permission
+configure Security group for all vm
+ 1. expose all inbound and outbound within the vpc
+ 2. expose 22 ports externally to access the vm over ssh
 Copy ssh key "pem file" [passwordless login between all servers with Default user is "ubuntu"] to the K8s Manager
-
+Configure one Load Balancer for accessing the kubernetes clister from outside
 
 
 Installations
@@ -24,7 +28,7 @@ run the following commands to configure the K8s Manager.
 This script will download and configure all the dependencies and will clone the latest code for [kubespray](https://github.com/kubernetes-incubator/kubespray.git)
 
 ```
-./base_machine.sh
+./K8s_Manager.sh
 ```
 
 Note:   While installing all requirements packages, if you get errors related to “requests” package, follow the steps below:
@@ -50,7 +54,29 @@ take all Instances Ip Addresses and save it for next steps :
 
 
 
+
+## Load-Balancer
+
+If you are using AWS / GCP or any other cloud services, then use their Load Balancer (ELB in AWS), because manual configure nginx / apache2 proxy will serve same like cloud Load Balancer but not an HA.
+
+
+We have to configure the ELB in aws to get the CNAME for Load Balancer. this url required for configurinmg the cluster (need to add this domain address as a "supplementary_addresses_in_ssl_keys" for ssl certificates of cluster)
+
+Create one classic Load Balancer in AWS before start configuring the kubernetes cluster with following  parameters.
+
+
+listeners >>
+
+| Load Balancer Protocol | Load Balancer Port | Instance Protocol | Instance Port | Cipher | SSL Certificate |
+| ---------------------- | ------------------ | ----------------- | ------------- | ------ | --------------- |
+| tcp | 433 | tcp | 6443 | N/A | N/A |
+
+ 
+Add the 2 master instances to the ELB, now it will show unhealthy. don't worry it will come up.
+
+
 ## Copy the key file into the k8s Manager
+
 Navigate into the kubespray folder
 
 ```
@@ -86,6 +112,7 @@ Change permissions of this file.
 $ chmod 600 K8s.pem
 ```
 
+
 ## Modify the inventory file as per your cluster
 
 Copy the inventory sample inventory and create your own duplicate as per your cluster
@@ -94,6 +121,20 @@ Copy the inventory sample inventory and create your own duplicate as per your cl
 $ cd kubespray
 $ cp -rfp inventory/sample inventory/mycluster
 ```
+
+
+### Configure Load Balancer address in "k8s-cluster.yml" for ssl validation [ELB we created before](#Load-Balancer) 
+
+```
+vim inventory/mycluster/group_vars/k8s-cluster/k8s-cluster.yml
+```
+search for "supplementary_addresses_in_ssl_keys" in the file and update the line with your ELB address as follow
+assuming the my ELB address is  : ```k8s-master-876887687.us-east-1.elb.amazonaws.com```
+
+```
+supplementary_addresses_in_ssl_keys: [k8s-master-876887687.us-east-1.elb.amazonaws.com]
+```
+
 
 Since I will be creating a 2 master 2 node cluster, I have accordingly updated the inventory file. Update Ansible inventory file with inventory builder. Run the following commands to update the inventory file
 
@@ -153,7 +194,7 @@ all:
 ## Deploy Kubespray with Ansible Playbook
 
 ```
-$ ansible-playbook -i inventory/mycluster/hosts.yaml cluster.yml --private-key=K8s.pem --flush-cache -s
+$ ansible-playbook -i inventory/mycluster/hosts.yaml cluster.yml --private-key=K8s.pem -b
 ```
 
 
@@ -179,6 +220,34 @@ $ kubectl -n kube-system get services
 Wohhoooo!!! We are done!!!
 
 
+
+Copy the "/etc/kubernetes/admin.conf" from your master node and paste it "K8s-Manager-home-folder/.kube/config" of K8s-Manager server
+
+replace the server: entry with your ELB address. so the config file in K8s-Manager server should look like this :
+
+```
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FU.......
+    ...............................................................
+    .......................WT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+    server: https://k8s-master-876887687.us-east-1.elb.amazonaws.com
+  name: cluster.local
+  .......................
+  .....................
+  .......................
+```
+
+
+Check the load balancer configuration by trying to access the K8s cluster.
+
+```
+$ kubectl get nodes
+```
+
+
+
 ## Additional steps might be needed while working with K8s cluster
 
 1.  Adding a new node (node5 - 172.31.38.247) to a cluster (add these lines at the bottom of this section)
@@ -201,7 +270,7 @@ node5
 
 - Now run the following command to scale your cluster:
 ```
-$ ansible-playbook -i inventory/mycluster/hosts.yaml scale.yml --private-key=K8s.pem --flush-cache -s
+$ ansible-playbook -i inventory/mycluster/hosts.yaml cluster.yml --private-key=K8s.pem -b
 ```
 
 
@@ -217,13 +286,13 @@ node5
 ```
 - Now run the following command to scale your cluster:
 ```
-$ ansible-playbook -i inventory/mycluster/hosts.yaml remove-node.yml --private-key=K8s.pem --flush-cache -s
+$ ansible-playbook -i inventory/mycluster/hosts.yaml remove-node.yml --private-key=K8s.pem --extra-vars "node=node5" -b
 ```
 
 3. Reset the entire cluster for fresh installation:
 
-Keep the “hosts.ini” updated properly with all servers mentioned in the correct sections, and run   the following command:
+Keep the “hosts.ini” updated properly with all servers mentioned in the correct sections, and run the following command:
 
 ```
-$ ansible-playbook -i inventory/mycluster/hosts.yaml reset.yml --private-key=K8s.pem --flush-cache -s
+$ ansible-playbook -i inventory/mycluster/hosts.yaml reset.yml --private-key=K8s.pem -b
 ```
