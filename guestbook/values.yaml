@@ -8,7 +8,7 @@ version: while
 image:
   frontend:
     repository: akhilrajmailbox/guestbook
-    tag: gb-frontend-1
+    tag: gb-frontend
     pullPolicy: Always
     # repository: gcr.io/google-samples/gb-frontend
     # tag: v4
