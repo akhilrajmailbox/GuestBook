@@ -24,6 +24,7 @@ function efk_server() {
 function efk_info() {
     efk_server
     echo "the logs need to have format > timestampFormat: YYYY-MM-DD HH:mm:ss.SSS"
+    echo "wait for 20 sec"
     sleep 20
     if [[ $(kubectl -n logging get services kibana -o jsonpath="{.spec.type}") == NodePort ]] ; then
         export NODE_PORT=$(kubectl get --namespace logging -o jsonpath="{.spec.ports[0].nodePort}" services kibana)

@@ -22,7 +22,7 @@ $ helm install --namespace development helm-repo/guestbook --name my-app
 To completely uninstall/delete the `my-app` deployment:
 
 ```
-$ helm delete --purge my-app --namespace development
+$ helm delete --purge my-app
 $ helm repo remove helm-repo
 $ helm repo list
 ```

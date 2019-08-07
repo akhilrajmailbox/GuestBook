@@ -35,6 +35,7 @@ function prometheus_server() {
         --set server.persistentVolume.enabled=true \
         --set alertmanager.persistentVolume.storageClass="rook-block" \
         --set server.persistentVolume.storageClass="rook-block"
+    echo "wait for 20 sec"
     sleep 20
 }
 
