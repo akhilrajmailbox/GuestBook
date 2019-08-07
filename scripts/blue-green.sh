@@ -1,7 +1,7 @@
 #!/bin/bash
 export K8S_NAMESPACE=development
-export SERVICE_NAME=frontend
-export DEPLOY_NAME=frontend
+export SERVICE_NAME=guestbook
+export DEPLOY_NAME=guestbook
 
 kubectl -n $K8S_NAMESPACE apply -f ../sources/guestbook-frontend-deployment.yaml
 kubectl -n $K8S_NAMESPACE patch service $SERVICE_NAME -p '{"spec":{"selector":{"app.kubernetes.io/version":"green"}}}'
