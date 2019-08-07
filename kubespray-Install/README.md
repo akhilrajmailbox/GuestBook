@@ -123,7 +123,7 @@ $ cp -rfp inventory/sample inventory/mycluster
 ```
 
 
-### Configure Load Balancer address in "k8s-cluster.yml" for ssl validation [ELB we created before](#Load-Balancer) 
+### Configure Load Balancer address in "k8s-cluster.yml" for ssl validation with [ELB we created before](#Load-Balancer) 
 
 ```
 vim inventory/mycluster/group_vars/k8s-cluster/k8s-cluster.yml
