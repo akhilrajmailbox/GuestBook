@@ -7,8 +7,11 @@ version: while
 
 image:
   frontend:
-    repository: akhilrajmailbox/guestbook
-    tag: gb-frontend
+    # repository: akhilrajmailbox/guestbook
+    # tag: gb-frontend
+    # pullPolicy: Always
+    repository: gcr.io/google-samples/gb-frontend
+    tag: v4
     pullPolicy: Always
   redismaster:
     repository: akhilrajmailbox/guestbook
@@ -32,7 +35,7 @@ resources:
 
 service:
   frontend:
-    type: NodePort
+    type: ClusterIP
     port: 80
   redismaster:
     type: ClusterIP
