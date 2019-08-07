@@ -15,7 +15,7 @@ spec:
   # type: LoadBalancer
   ports:
   - port: {{ .Values.service.frontend.port }}
-    targetPort: http-server
+    targetPort: {{ .Values.service.frontend.port }}
   selector:
     app.kubernetes.io/name: {{ include "guestbook.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
