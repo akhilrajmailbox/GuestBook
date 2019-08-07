@@ -28,5 +28,5 @@ RUN sed -i 's#CustomLog /proc/self/fd/1 combined#CustomLog "|/bin/cat" combined#
 
 ADD guestbook.php /var/www/html/guestbook.php
 ADD controllers.js /var/www/html/controllers.js
-ADD index.html /tmp/index.html
-ENTRYPOINT envsubst < /tmp/index.html > /var/www/html/index.html && apache2-foreground
+ADD index.html /var/www/html/index.html
+ENTRYPOINT sed -i "s|BG_COLOUR|$BG_COLOUR|g" /var/www/html/index.html && apache2-foreground
