@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Chart.Name }} - {{ .Values.version }}
+  name: {{ .Chart.Name }}-{{ .Values.version }}
   labels:
     app.kubernetes.io/name: {{ include "guestbook.name" . }}
     helm.sh/chart: {{ include "guestbook.chart" . }}

@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 replicaCount: 3
-version: while
+version: white
 
 image:
   frontend:
