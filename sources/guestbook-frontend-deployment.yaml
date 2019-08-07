@@ -1,7 +1,7 @@
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
-  name: frontend
+  name: guestbook
   labels:
     app: guestbook
 spec:
@@ -35,6 +35,6 @@ spec:
           # uncomment the line below:
           # value: env
         - name: BG_COLOUR
-          value: "#1a1aff"
+          value: "#00cc00"
         ports:
         - containerPort: 80
