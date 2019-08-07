@@ -35,6 +35,6 @@ spec:
           # uncomment the line below:
           # value: env
         - name: BG_COLOUR
-          value: "#00cc00"
+          value: "#66ff99"
         ports:
         - containerPort: 80

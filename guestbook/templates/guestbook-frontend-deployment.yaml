@@ -39,8 +39,6 @@ spec:
           # service's host. To do so, comment out the 'value: dns' line above, and
           # uncomment the line below:
           # value: env
-        - name: BG_COLOUR
-          value: "#00cc00"
         ports:
         - containerPort: {{ .Values.service.frontend.port }}
 
