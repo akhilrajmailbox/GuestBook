@@ -14,7 +14,7 @@ $ helm repo add helm-repo https://akhilrajmailbox.github.io/GuestBook/docs
 To install the chart with your preference of release name, for example, `my-app`:
 
 ```
-$ helm install --namespace production helm-repo/guestbook --name my-app
+$ helm install --namespace development helm-repo/guestbook --name my-app
 ```
 
 ### Uninstalling the Chart
@@ -22,7 +22,7 @@ $ helm install --namespace production helm-repo/guestbook --name my-app
 To completely uninstall/delete the `my-app` deployment:
 
 ```
-$ helm delete --purge my-app
+$ helm delete --purge my-app --namespace development
 $ helm repo remove helm-repo
 $ helm repo list
 ```
@@ -36,13 +36,29 @@ The following tables lists the configurable parameters of the chart and their de
 | Parameter                  | Description                                     | Default                                                    |
 | -----------------------    | ---------------------------------------------   | ---------------------------------------------------------- |
 | `replicaCount`         | Replicas for guestbook Deployment                                | `3`                                         |
-| `image.repository`         | Image repository                                | `gcr.io/google-samples/gb-frontend`                                         |
-| `image.tag`                | Image tag                                       | `v4`                                                       |
-| `image.pullPolicy`         | Image pull policy                               | `Always`                                                   |
-| `service.type`             | Service type                                    | `NodePort`                                             |
-| `service.port`             | Service port                                    | `80`                                                     |
-| `resources.cpu`       | cpu for guestbook                             | `100m`                                                     |
-| `resources.memory`               | memory for guestbook                                       | `100Mi`                                                     |
+| `version`               | demostrate Blue/Green Deployment (background colour)                                      | `while`                                                     |
+| `image.frontend.repository`         | frontend Image repository                                | `akhilrajmailbox/guestbook`                                         |
+| `image.frontend.tag`                | frontend Image tag                                       | `gb-frontend`                                                       |
+| `image.frontend.pullPolicy`         | frontend Image pull policy                               | `Always`                                                   |
+| `image.redismaster.repository`         | redismaster Image repository                                | `akhilrajmailbox/guestbook`                                         |
+| `image.redismaster.tag`                | redismaster Image tag                                       | `redis-master`                                                       |
+| `image.redismaster.pullPolicy`         | redismaster Image pull policy                               | `Always`                                                   |
+| `image.redismslave.repository`         | redismslave Image repository                                | `akhilrajmailbox/guestbook`                                         |
+| `image.redismslave.tag`                | redismslave Image tag                                       | `redis-slave`                                                       |
+| `image.redismslave.pullPolicy`         | redismslave Image pull policy                               | `Always`                                                   |
+| `resources.frontend.cpu`       | cpu for frontend                             | `100m`                                                     |
+| `resources.frontend.memory`               | memory for frontend                                       | `100Mi`                                                     |
+| `resources.redismaster.cpu`       | cpu for redismaster                             | `100m`                                                     |
+| `resources.redismaster.memory`               | memory for redismaster                                       | `100Mi`                                                     |
+| `resources.redismslave.cpu`       | cpu for redismslave                             | `100m`                                                     |
+| `resources.redismslave.memory`               | memory for redismslave                                       | `100Mi`                                                     |
+| `service.frontend.type`             | frontend Service type                                    | `NodePort`                                             |
+| `service.frontend.port`             | frontend Service port                                    | `80`                                                     |
+| `service.redismaster.type`             | redismaster Service type                                    | `ClusterIP`                                             |
+| `service.redismaster.port`             | redismaster Service port                                    | `6379`                                                     |
+| `service.redismslave.type`             | redismslave Service type                                    | `ClusterIP`                                             |
+| `service.redismslave.port`             | redismslave Service port                                    | `6379`                                                     |
+
 
 Specify each parameter using the `--set [key=value]` argument to `helm install`. For example,
 

@@ -3,16 +3,40 @@
 # Declare variables to be passed into your templates.
 
 replicaCount: 3
+version: while
 
 image:
-  repository: gcr.io/google-samples/gb-frontend
-  tag: v4
-  pullPolicy: Always
+  frontend:
+    repository: akhilrajmailbox/guestbook
+    tag: gb-frontend
+    pullPolicy: Always
+  redismaster:
+    repository: akhilrajmailbox/guestbook
+    tag: redis-master
+    pullPolicy: Always
+  redismslave:
+    repository: akhilrajmailbox/guestbook
+    tag: redis-slave
+    pullPolicy: Always
 
 resources:
-  cpu: 100m
-  memory: 100Mi
+  frontend:
+    cpu: 100m
+    memory: 100Mi
+  redismaster:
+    cpu: 100m
+    memory: 100Mi
+  redismslave:
+    cpu: 100m
+    memory: 100Mi
 
 service:
-  type: ClusterIP
-  port: 80
+  frontend:
+    type: NodePort
+    port: 80
+  redismaster:
+    type: ClusterIP
+    port: 6379
+  redismslave:
+    type: ClusterIP
+    port: 6379

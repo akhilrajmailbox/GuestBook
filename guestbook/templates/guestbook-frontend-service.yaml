@@ -9,14 +9,14 @@ metadata:
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
   # comment or delete the following line if you want to use a LoadBalancer
-  type: {{ .Values.service.type }} 
+  type: {{ .Values.service.frontend.type }} 
   # if your cluster supports it, uncomment the following to automatically create
   # an external load-balanced IP for the frontend service.
   # type: LoadBalancer
   ports:
-  - port: {{ .Values.service.port }}
+  - port: {{ .Values.service.frontend.port }}
     targetPort: http-server
   selector:
     app.kubernetes.io/name: {{ include "guestbook.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
-
+    app.kubernetes.io/version: {{ .Values.version }}

@@ -7,9 +7,10 @@ metadata:
     role: master
     tier: backend
 spec:
+  type: {{ .Values.service.redismaster.type }} 
   ports:
-  - port: 6379
-    targetPort: 6379
+  - port: {{ .Values.service.redismaster.port }}
+    targetPort: {{ .Values.service.redismaster.port }}
   selector:
     app: redis
     role: master

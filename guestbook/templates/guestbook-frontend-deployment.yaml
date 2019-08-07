@@ -11,6 +11,7 @@ spec:
     matchLabels:
       app.kubernetes.io/name: {{ include "guestbook.name" . }}
       app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/version: {{ .Values.version }}
   replicas: {{ .Values.replicaCount }}
   template:
     metadata:
@@ -20,12 +21,12 @@ spec:
     spec:
       containers:
       - name: {{ .Chart.Name }}
-        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        image: "{{ .Values.image.frontend.repository }}:{{ .Values.image.frontend.tag }}"
+        imagePullPolicy: {{ .Values.image.frontend.pullPolicy }}
         resources:
           requests:
-            cpu: {{ .Values.resources.cpu }}
-            memory: {{ .Values.resources.memory }}
+            cpu: {{ .Values.resources.frontend.cpu }}
+            memory: {{ .Values.resources.frontend.memory }}
         env:
         - name: GET_HOSTS_FROM
           value: dns
@@ -38,6 +39,6 @@ spec:
           # uncomment the line below:
           # value: env
         ports:
-        - containerPort: {{ .Values.service.port }}
+        - containerPort: {{ .Values.service.frontend.port }}
 
 

@@ -1,31 +1,29 @@
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
-  name: redis-slave
+  name: frontend
   labels:
-    app: redis
+    app: guestbook
 spec:
   selector:
     matchLabels:
-      app: redis
-      role: slave
-      tier: backend
-  replicas: 2
+      app.kubernetes.io/name: {{ include "guestbook.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/version: green
+  replicas: 3
   template:
     metadata:
       labels:
-        app: redis
-        role: slave
-        tier: backend
+        app: guestbook
+        tier: frontend
     spec:
       containers:
-      - name: slave
-        image: "{{ .Values.image.redismslave.repository }}:{{ .Values.image.redismslave.tag }}"  # gcr.io/google_samples/gb-redisslave:v3
-        imagePullPolicy: {{ .Values.image.redismslave.pullPolicy }}
+      - name: php-redis
+        image: akhilrajmailbox/guestbook:gb-frontend
         resources:
           requests:
-            cpu: {{ .Values.resources.redismslave.cpu }}
-            memory: {{ .Values.resources.redismslave.memory }}
+            cpu: 100m
+            memory: 100Mi
         env:
         - name: GET_HOSTS_FROM
           value: dns
@@ -37,6 +35,7 @@ spec:
           # service's host. To do so, comment out the 'value: dns' line above, and
           # uncomment the line below:
           # value: env
+        - name: BG_COLOUR
+          value: "#1a1aff"
         ports:
-        - containerPort: {{ .Values.service.redismslave.port }}
-
+        - containerPort: 80

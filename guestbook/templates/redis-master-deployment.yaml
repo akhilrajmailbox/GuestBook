@@ -20,11 +20,12 @@ spec:
     spec:
       containers:
       - name: master
-        image: k8s.gcr.io/redis:e2e  # or just image: redis
+        image: "{{ .Values.image.redismaster.repository }}:{{ .Values.image.redismaster.tag }}"  # k8s.gcr.io/redis:e2e  # or just image: redis
+        imagePullPolicy: {{ .Values.image.redismaster.pullPolicy }}
         resources:
           requests:
-            cpu: 100m
-            memory: 100Mi
+            cpu: {{ .Values.resources.redismaster.cpu }}
+            memory: {{ .Values.resources.redismaster.memory }}
         ports:
-        - containerPort: 6379
+        - containerPort: {{ .Values.service.redismaster.port }}
 
