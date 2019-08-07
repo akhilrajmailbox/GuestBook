@@ -7,12 +7,12 @@ version: while
 
 image:
   frontend:
-    # repository: akhilrajmailbox/guestbook
-    # tag: gb-frontend
-    # pullPolicy: Always
-    repository: gcr.io/google-samples/gb-frontend
-    tag: v4
+    repository: akhilrajmailbox/guestbook
+    tag: gb-frontend-1
     pullPolicy: Always
+    # repository: gcr.io/google-samples/gb-frontend
+    # tag: v4
+    # pullPolicy: Always
   redismaster:
     repository: akhilrajmailbox/guestbook
     tag: redis-master
