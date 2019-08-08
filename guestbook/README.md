@@ -36,7 +36,6 @@ The following tables lists the configurable parameters of the chart and their de
 | Parameter                  | Description                                     | Default                                                    |
 | -----------------------    | ---------------------------------------------   | ---------------------------------------------------------- |
 | `replicaCount`         | Replicas for guestbook Deployment                                | `3`                                         |
-| `version`               | demostrate Blue/Green Deployment (background colour)                                      | `while`                                                     |
 | `image.frontend.repository`         | frontend Image repository                                | `akhilrajmailbox/guestbook`                                         |
 | `image.frontend.tag`                | frontend Image tag                                       | `gb-frontend`                                                       |
 | `image.frontend.pullPolicy`         | frontend Image pull policy                               | `Always`                                                   |

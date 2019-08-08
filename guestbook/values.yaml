@@ -4,6 +4,8 @@
 
 replicaCount: 3
 version: white
+tier: frontend
+type: stable
 
 image:
   frontend:

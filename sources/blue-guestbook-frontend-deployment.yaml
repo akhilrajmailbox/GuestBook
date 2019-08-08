@@ -1,20 +1,22 @@
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
-  name: guestbook-green
+  name: guestbook-blue
   labels:
     app: guestbook
 spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: guestbook
-      app.kubernetes.io/version: green
-  replicas: 3
+      app.kubernetes.io/version: blue
+      app.kubernetes.io/tier: frontend
+  replicas: 2
   template:
     metadata:
       labels:
         app.kubernetes.io/name: guestbook
-        app.kubernetes.io/version: green
+        app.kubernetes.io/version: blue
+        app.kubernetes.io/tier: frontend
     spec:
       containers:
       - name: php-redis
@@ -35,6 +37,6 @@ spec:
           # uncomment the line below:
           # value: env
         - name: BG_COLOUR
-          value: "#66ff99"
+          value: "#6699ff"
         ports:
         - containerPort: 80
