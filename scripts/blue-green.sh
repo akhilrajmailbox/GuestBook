@@ -1,4 +1,6 @@
 #!/bin/bash
+# link : https://github.com/akhilrajmailbox/ci-cd/blob/kubernetes/kubernetes-production.pdf
+
 export K8S_NAMESPACE=development
 export SERVICE_NAME=guestbook
 export DEPLOY_NAME=guestbook

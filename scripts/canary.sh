@@ -1,4 +1,8 @@
 #!/bin/bash
+# link : https://github.com/kelseyhightower/talks/tree/master/kubecon-eu-2016/demo#deploy-a-canary
+# link : https://kubernetes.io/docs/concepts/cluster-administration/manage-deployment/
+# link : https://github.com/akhilrajmailbox/ci-cd/blob/kubernetes/kubernetes-production.pdf
+
 export K8S_NAMESPACE=development
 export SERVICE_NAME=guestbook
 export STABLE_DEPLOY_NAME=guestbook-green
