@@ -145,11 +145,11 @@ Create one classic Load Balancer with following parameters in order to access th
 *Health check*
 
 ```
-Ping Target 	        HTTP:30427/
-Timeout 	            5 seconds
-Interval 	            30 seconds
-Unhealthy threshold 	2
-Healthy threshold 	    10
+Ping Target             HTTP:30427/
+Timeout                 5 seconds
+Interval                30 seconds
+Unhealthy threshold     2
+Healthy threshold       10
 ```
 
 *listeners*
@@ -221,12 +221,13 @@ Create one classic Load Balancer with following parameters in order to access th
 *Health check*
 
 ```
-Ping Target 	        HTTP:30429/
-Timeout 	            5 seconds
-Interval 	            30 seconds
-Unhealthy threshold 	2
-Healthy threshold 	    10
+Ping Target             HTTP:30429/
+Timeout                 5 seconds
+Interval                30 seconds
+Unhealthy threshold     2
+Healthy threshold       10
 ```
+
 
 *listeners*
 
@@ -257,11 +258,11 @@ Create one classic Load Balancer with following parameters in order to access th
 *Health check*
 
 ```
-Ping Target 	        HTTP:30434/
-Timeout 	            5 seconds
-Interval 	            30 seconds
-Unhealthy threshold 	2
-Healthy threshold 	    10
+Ping Target             HTTP:30434/
+Timeout                 5 seconds
+Interval                30 seconds
+Unhealthy threshold     2
+Healthy threshold       10
 ```
 
 *listeners*
