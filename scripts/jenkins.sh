@@ -3,7 +3,7 @@
 #################################
 function jenkins_install() {
     apt-get update
-    apt-get install sudo wget unzip nano -y
+    apt-get install sudo curl wget unzip nano -y
     apt-get install openjdk-8-jdk -y
     export JAVA_HOME=/usr/lib/jvm/openjdk-8-jdk
     export PATH=$PATH:$JAVA_HOME/bin:/usr/sbin:/sbin:/usr/local/sbin
@@ -49,7 +49,7 @@ cat << EOF
   kubectl get ns
   ######
   
-  If everything working fine, then run the script "helm-configure.sh" in jenkins server as jenkins user.
+  If everything is working fine, then run the script "helm-configure.sh" in jenkins server as jenkins user.
   you will find the script under scripts folder
 EOF
 }

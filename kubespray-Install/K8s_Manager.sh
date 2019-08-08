@@ -27,7 +27,7 @@ sudo ufw disable
 ## Configuring kubespray server andf its requirements
 git clone https://github.com/akhilrajmailbox/kubespray.git
 cd kubespray
-pip3  install -r contrib/inventory_builder/requirements.txt
+pip3 install -r contrib/inventory_builder/requirements.txt
 sudo pip install -r requirements.txt
 
 
@@ -37,9 +37,10 @@ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
 echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
 sudo apt-get update
 sudo apt-get install -y kubectl
+echo "installing helm in your system"
+curl -L https://git.io/get_helm.sh | bash
 mkdir $HOME/.kube
 touch $HOME/.kube/config
 echo "update the $HOME/.kube/config with admin.conf file of any one of the master node and replace the server: entry with your ELB address"
-
 
 ansible --version

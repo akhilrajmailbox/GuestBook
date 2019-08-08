@@ -3,6 +3,7 @@
 # https://gist.github.com/jamesbuckett/17fe25caa2b85886c78597310bab74bd
 # https://github.com/luxas/kubeadm-workshop
 
+export GRAFANA_PASSWORD="MyGRafan@"
 
 ################################################
 function metrics_server() {
@@ -48,7 +49,7 @@ function grafana_server() {
         --namespace monitoring \
         --set persistence.enabled=true \
         --set persistence.storageClassName="rook-block" \
-        --set adminPassword="MyGRafan@" \
+        --set adminPassword="$GRAFANA_PASSWORD" \
         --set datasources."datasources\.yaml".apiVersion=1 \
         --set datasources."datasources\.yaml".datasources[0].name=Prometheus \
         --set datasources."datasources\.yaml".datasources[0].type=prometheus \
@@ -69,6 +70,9 @@ function grafana_url() {
         echo ""
         echo "Grafana Nodeport Configuration will be :: "
         echo http://$NODE_IP:$NODE_PORT
+        echo ""
+        echo "If you are planning to configure AWS ELB, then use this port to configure ELB to access Grafana"
+        echo "Grafana NodePort : $NODE_PORT"
     fi
 }
 

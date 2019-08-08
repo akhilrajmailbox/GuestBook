@@ -28,6 +28,7 @@ run the following commands to configure the K8s Manager.
 This script will download and configure all the dependencies and will clone the latest code for [kubespray](https://github.com/kubernetes-incubator/kubespray.git)
 
 ```
+cd kubespray-Install/
 ./K8s_Manager.sh
 ```
 
@@ -242,13 +243,15 @@ clusters:
 
 Check the load balancer configuration by trying to access the K8s cluster.
 
+Exit from the K8s-Manager server terminal, then ssh to that machine again. then run the following commands to test the K8s Cluster....
+
 ```
 $ kubectl get nodes
 ```
 
 
 
-## Additional steps might be needed while working with K8s cluster
+## Additional steps might be needed while working with K8s cluster (Not Required for this Demo)
 
 1.  Adding a new node (node5 - 172.31.38.247) to a cluster (add these lines at the bottom of this section)
 

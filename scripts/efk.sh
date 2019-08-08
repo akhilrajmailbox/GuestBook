@@ -4,7 +4,8 @@
 ################################################
 function efk_server() {
     # creating namespace called logging
-    kubectl apply -f ../efk/namespace.yaml
+    echo "creating namespace : logging"
+    kubectl create namespace logging
 
     # installing and configuring elasticsearch in logging namespace
     kubectl -n logging apply -f ../efk/elasticsearch-deployment.yaml
@@ -32,6 +33,9 @@ function efk_info() {
         echo ""
         echo "kibana Nodeport Configuration will be :: "
         echo http://$NODE_IP:$NODE_PORT
+        echo ""
+        echo "If you are planning to configure AWS ELB, then use this port to configure ELB to access Kibana"
+        echo "Kibana NodePort : $NODE_PORT"
     fi
 }
 

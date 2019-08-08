@@ -15,6 +15,7 @@ function bg_deploy() {
     kubectl -n $K8S_NAMESPACE delete deployment $DEPLOY_NAME
     sleep 5
     echo "refresh webpage many time to see your work...!"
+    echo "Some time local cache may be a headache..., Try from incognito..!"
 }
 
 bg_deploy
