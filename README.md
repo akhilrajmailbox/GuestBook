@@ -74,11 +74,11 @@ Once you configured the jenkins, you have to access it form web ui in order to d
 *Health check*
 
 ```
-Ping Target 	        HTTP:8080/
-Timeout 	            5 seconds
-Interval 	            30 seconds
-Unhealthy threshold 	2
-Healthy threshold 	    10
+Ping Target             HTTP:8080/
+Timeout                 5 seconds
+Interval                30 seconds
+Unhealthy threshold     2
+Healthy threshold       10
 ```
 
 *listeners*
