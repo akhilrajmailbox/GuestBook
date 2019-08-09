@@ -29,6 +29,7 @@ function pre_check() {
 
 function guestbook_install() {
     pre_check
+    kubectl create ns $K8S_NAMESPACE
     helm repo add helm-repo https://akhilrajmailbox.github.io/GuestBook/docs
     helm install --namespace $K8S_NAMESPACE helm-repo/guestbook --name my-app
 }
