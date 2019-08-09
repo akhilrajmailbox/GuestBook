@@ -141,6 +141,33 @@ assuming the my ELB address is  : ```k8s-master-876887687.us-east-1.elb.amazonaw
 supplementary_addresses_in_ssl_keys: [k8s-master-876887687.us-east-1.elb.amazonaws.com]
 ```
 
+### Configure ceph-commmon in all master and workewr node of your kubernetes cluster for using rook
+
+```
+vim roles/bootstrap-os/tasks/main.yml
+```
+
+search for the keyword : `ceph-common`
+
+comment the line `when: rbd_provisioner_enabled|default(false)` , so the manifest look like this :
+
+```
+........................
+...................
+........................
+- name: "Install ceph-commmon package"
+  package:
+    name:
+      - ceph-common
+    state: present
+#  when: rbd_provisioner_enabled|default(false)
+........................
+...................
+........................
+```
+
+By using kubespray We can configure helm, metrics server, private registry etc... but we are not going to use it and we are installing and configuring everything from scrach...
+
 
 Since I will be creating a 2 master 2 node cluster, I have accordingly updated the inventory file. Update Ansible inventory file with inventory builder. Run the following commands to update the inventory file
 
