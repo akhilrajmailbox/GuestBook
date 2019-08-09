@@ -65,8 +65,9 @@ Use one ubuntu 16.04 machine from the 6 machines which we created before. You ca
 3. run the following commands within the cloned location
 
 ```
-cd scripts/
-./jenkins.sh
+$ git clone https://github.com/akhilrajmailbox/GuestBook.git
+$ cd GuestBook/scripts/
+$ ./jenkins.sh
 ```
 
 After running the script in jenkins server, you have to copy `admin.conf` file from K8s manager server (the kubernetes config file updated with ELB Ip Address for accessing multi master k8s.) to `/var/lib/jenkins/.kube/config` in jenkins server.
@@ -74,17 +75,17 @@ After running the script in jenkins server, you have to copy `admin.conf` file f
 try to access kubernetes server from jenkins by following commands
 
 ```
-chown -R jenkins:jenkins /var/lib/jenkins   # as root user
+$ chown -R jenkins:jenkins /var/lib/jenkins   # as root user
 ```
 switch user to jenkins
 
 ```
-su jenkins
+$ su jenkins
 ```
 
 ```
-export KUBECONFIG=/var/lib/jenkins/.kube/config
-kubectl get ns
+$ export KUBECONFIG=/var/lib/jenkins/.kube/config
+$ kubectl get ns
 ```
 
 
@@ -140,7 +141,7 @@ for configuring the CI/CD from jenkins to deploy the guestbook application in ku
 4. In `Build` area, choose `execute shell` from `Add build step` and add the build [script](https://raw.githubusercontent.com/akhilrajmailbox/GuestBook/master/scripts/build.sh) as follow.
 
 ```
-curl -s https://raw.githubusercontent.com/akhilrajmailbox/GuestBook/master/scripts/build.sh | bash
+$ curl -s https://raw.githubusercontent.com/akhilrajmailbox/GuestBook/master/scripts/build.sh | bash
 ```
 
 
@@ -180,8 +181,8 @@ Note : Assumning that you are successfully configured the Multi master Kubernete
 run these two commands to ensure that you are able to access the kubernetes cluster from your K8s Manager Machine.
 
 ```
-kubectl get ns
-helm repo list
+$ kubectl get ns
+$ helm repo list
 ```
 
 If you are not able to connect, go to previous steps and check your configuration.
@@ -195,8 +196,8 @@ As long as we don't have a `persistent storage` in manual configured K8s Cluster
 For configuring the `persistent storage` in our Kubernetes Cluster, run the [rook-block.sh](https://raw.githubusercontent.com/akhilrajmailbox/GuestBook/master/scripts/Rook.sh) scripts.
 
 ```
-cd scripts/
-./rook-block.sh
+$ cd scripts/
+$ ./rook-block.sh
 ```
 
 Once the `Rook` configured, we can deploy our `Prometheus & Grafana` with `persistentVolume`.
@@ -218,8 +219,8 @@ You can change the default password for `admin` user by passing you custom passw
 Configure your monitoring Servers on namespace `monitoring` by running the [prometheus-grafana.sh](https://raw.githubusercontent.com/akhilrajmailbox/GuestBook/master/scripts/prometheus-grafana.sh) script from `K8s Manager`
 
 ```
-cd scripts/
-./prometheus-grafana.sh
+$ cd scripts/
+$ ./prometheus-grafana.sh
 ```
 
 Once you deploy the `Prometheus & Grafana` successfully, Kubernetes will automatically assign one `NodePort` to your application. You will get that NodePort from the output of about script with keyword `Grafana NodePort`. (you may need this for configuring the AWS ELB)
@@ -255,8 +256,8 @@ You can deploy and Configure EFK in K8s Cluster by running the [efk.sh](https://
 
 
 ```
-cd scripts/
-./efk.sh
+$ cd scripts/
+$ ./efk.sh
 ```
 
 
@@ -308,8 +309,8 @@ Note :: Assuming that the GuestBook Application that you deployed from jenkins i
 You can deploy Latest version of `GuestBook` application in K8s Cluster by running the [blue-green.sh](https://raw.githubusercontent.com/akhilrajmailbox/GuestBook/master/scripts/blue-green.sh) script.
 
 ```
-cd scripts/
-./blue-green.sh
+$ cd scripts/
+$ ./blue-green.sh
 ```
 
 Once the deployment done with the `blue-green.sh` script, try to access the guestbook application with your Load Balancer, refresh many time to reflect your changes, or try from `incognito` to see the latest changes (green background colour) without any downtime.
@@ -337,8 +338,8 @@ rollout     : 	Delete Old release (stable release) and scale up canary release, 
 1. run the script with deploy option, tjhis will deploy canary release along with stable release. So each release that will receive the live traffic.
 
 ```
-cd scripts/
-./canary.sh -o deploy
+$ cd scripts/
+$ ./canary.sh -o deploy
 ```
 
 Refresh your web page many time to see the changes, you can notice the background colour will change between `green and blue`.
@@ -348,8 +349,8 @@ Refresh your web page many time to see the changes, you can notice the backgroun
 for that you can use the following command
 
 ```
-cd scripts/
-./canary.sh -o rollout
+$ cd scripts/
+$ ./canary.sh -o rollout
 ```
 
 [:hourglass: Table of contents](#Table-of-contents)
