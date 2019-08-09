@@ -27,6 +27,7 @@ sudo ufw disable
 ## Configuring kubespray server andf its requirements
 git clone https://github.com/akhilrajmailbox/kubespray.git
 cd kubespray
+pip3 install --upgrade setuptools
 pip3 install -r contrib/inventory_builder/requirements.txt
 sudo pip install -r requirements.txt
 
