@@ -1,3 +1,5 @@
+[Go Back](https://github.com/akhilrajmailbox/GuestBook)
+
 # guestbook: an example chart for educational purpose.
 
 This chart provides example of some of the important features of Helm.
@@ -96,3 +98,5 @@ add helm repo to your system and install.
 ```
 helm repo add helm-repo https://akhilrajmailbox.github.io/GuestBook/docs
 ```
+
+[Go Back](https://github.com/akhilrajmailbox/GuestBook)

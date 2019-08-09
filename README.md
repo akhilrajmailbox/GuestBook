@@ -23,6 +23,8 @@ Table of contents
 
 ## Requirement
 
+[:hourglass: Table of contents](Table-of-contents)
+
 1. AWS Account
    * 6 ubuntu-16.04 machines (`2 K8s Master` , `2 K8s WorkerNodes` , `1 Jenkins Server` and `1 K8s Manager Machine`) with moderate resources `(2 vCPUs, 4 GB RAM and 50 GB Hard Disk for each machines)` prefer `t2.medium` type machine.
    * For production and for security, you can configure 4 machines without public ip address and 2 machines with public ip address (jenkins server and K8s Manager -- here `K8s manager` will act as `bastion host` for ssh to rest of the machines).

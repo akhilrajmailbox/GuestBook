@@ -3,11 +3,11 @@ entries:
   guestbook:
   - apiVersion: v1
     appVersion: "1.0"
-    created: 2019-08-09T10:53:41.721484737+05:30
+    created: 2019-08-09T11:02:29.93697615+05:30
     description: A Helm chart for Kubernetes
-    digest: 4e39e221b21ff373be2dd6f12dda401723292c661b2d1ef8948be2e3b2e59a4e
+    digest: 419a69be01642f90f10b64499d15bc82cdc83536bc6297ce2977503ef5f3892a
     name: guestbook
     urls:
     - https://akhilrajmailbox.github.io/GuestBook/docs/guestbook-0.1.0.tgz
     version: 0.1.0
-generated: 2019-08-09T10:53:41.720985733+05:30
+generated: 2019-08-09T11:02:29.935400879+05:30
