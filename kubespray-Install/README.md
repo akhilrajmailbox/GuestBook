@@ -29,8 +29,11 @@ Tools to be installed on the K8s Manager
 run the following commands to configure the K8s Manager.
 This script will download and configure all the dependencies and will clone the latest code for [kubespray](https://github.com/kubernetes-incubator/kubespray.git)
 
+login to K8s Manager Machine over ssh, use the default user (ubuntu). then run the following commands
+
 ```
-cd kubespray-Install/
+git clone https://github.com/akhilrajmailbox/GuestBook.git
+cd GuestBook/kubespray-Install/
 ./K8s_Manager.sh
 ```
 
