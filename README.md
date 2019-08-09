@@ -23,8 +23,6 @@ Table of contents
 
 ## Requirement
 
-[:hourglass: Table of contents](Table-of-contents)
-
 1. AWS Account
    * 6 ubuntu-16.04 machines (`2 K8s Master` , `2 K8s WorkerNodes` , `1 Jenkins Server` and `1 K8s Manager Machine`) with moderate resources `(2 vCPUs, 4 GB RAM and 50 GB Hard Disk for each machines)` prefer `t2.medium` type machine.
    * For production and for security, you can configure 4 machines without public ip address and 2 machines with public ip address (jenkins server and K8s Manager -- here `K8s manager` will act as `bastion host` for ssh to rest of the machines).
@@ -39,6 +37,7 @@ Table of contents
    * [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
    * [helm](https://git.io/get_helm.sh)
 
+[:hourglass: Table of contents](#Table-of-contents)
 
 
 ## Highly available Kubernetes cluster
@@ -50,6 +49,7 @@ Table of contents
 You will find the scripts also there for configure the K8s Manager...!
 Note :: you have to configure the K8s Manager with `admin.conf` file once the k8s cluster created. you may need this in upcoming steps.
 
+[:hourglass: Table of contents](#Table-of-contents)
 
 
 ## CI-CD pipeline using Jenkins
@@ -99,6 +99,7 @@ Once you configured the jenkins, you have to access it form web ui and need to d
 
 (incase if you are not able to access it check the security group of your instances -- ensure that 8080 port are able to access from outside)
 
+[:hourglass: Table of contents](#Table-of-contents)
 
 
 ## Deploy GuestBook Application
@@ -170,6 +171,7 @@ Healthy threshold       10
 
 Add your `K8s master` and `K8s slave` instances to the ELB, wait for some time and try to access the guestbook from outside with your AWS ELB address. (incase if you are not able to access it check the security group of your instances and AWS ELB -- ensure that all ports are able to access from outside)
 
+[:hourglass: Table of contents](#Table-of-contents)
 
 
 ## Prometheus and Grafana
@@ -245,7 +247,7 @@ Healthy threshold       10
 | ---------------------- | ------------------ | ----------------- | ------------- | ------ | --------------- |
 | http | 80 | http | 30429 | N/A | N/A |
 
-
+[:hourglass: Table of contents](#Table-of-contents)
 
 
 ## Elasticsearch Fluentd and Kibana
@@ -282,7 +284,7 @@ Healthy threshold       10
 | ---------------------- | ------------------ | ----------------- | ------------- | ------ | --------------- |
 | http | 80 | http | 30434 | N/A | N/A |
 
-
+[:hourglass: Table of contents](#Table-of-contents)
 
 
 ## Blue-Green and Canary Deployment
@@ -300,7 +302,6 @@ Please find the below table to understand the `Background Colour` for each strat
 
 
 
-
 ### Blue-Green Deployment of GuestBook Application
 
 Note :: Assuming that the GuestBook Application that you deployed from jenkins is up and running.
@@ -313,7 +314,6 @@ cd scripts/
 ```
 
 Once the deployment done with the `blue-green.sh` script, try to access the guestbook application with your Load Balancer, refresh many time to reflect your changes, or try from `incognito` to see the latest changes (green background colour) without any downtime.
-
 
 
 
@@ -352,3 +352,5 @@ for that you can use the following command
 cd scripts/
 ./canary.sh -o rollout
 ```
+
+[:hourglass: Table of contents](#Table-of-contents)
