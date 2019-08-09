@@ -7,7 +7,7 @@ Table of contents
 <!--ts-->
    * [Requirement](#Requirement)
    * [Highly available Kubernetes cluster](#Highly-available-Kubernetes-cluster)
-   * [CI/CD pipeline using Jenkins](#CI\/CD-pipeline-using-Jenkins)
+   * [CI/CD pipeline using Jenkins](#CI-/CD-pipeline-using-Jenkins)
    * [Deploy GuestBook Application](#Deploy-GuestBook-Application)
    * [Prometheus & Grafana](#Prometheus-&-Grafana)
    * [EFK (Elasticsearch, Fluentd and Kibana)](#EFK-(Elasticsearch,-Fluentd-and-Kibana))
