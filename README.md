@@ -1,19 +1,43 @@
 # GuestBook
 
 
+Table of contents
+=================
+
+<!--ts-->
+   * [Requirement](#Requirement)
+   * [Highly available Kubernetes cluster](#Highly-available-Kubernetes-cluster)
+   * [CI/CD pipeline using Jenkins](#CI/CD-pipeline-using-Jenkins)
+   * [Deploy GuestBook Application](#Deploy-GuestBook-Application)
+   * [Prometheus & Grafana](#Prometheus-&-Grafana)
+   * [EFK (Elasticsearch, Fluentd and Kibana)](#EFK-(Elasticsearch,-Fluentd-and-Kibana))
+   * [Blue/Green and Canary Deployment](#Blue/Green-and-Canary-Deployment)
+      * [Blue/Green Deployment of GuestBook Application](#Blue/Green-Deployment-of-GuestBook-Application)
+      * [Canary Deployment of GuestBook Application](#Canary-Deployment-of-GuestBook-Application)
+        * [steps](#steps)
+<!--te-->
+
+
+
+
+
 ## Requirement
 
 1. AWS Account
-   * 6 ubuntu-16.04 machines (`2 K8s Master` , `2 K8s WorkerNodes` , `1 Jenkins Server` and `1 K8s Manager Machine`) with moderate resources `(2 vCPUs, 4 GB RAM and 50 GB Hard Disk for each machines)` prefer `t2.medium` type machine
-   * In AWS Ubuntu machine, by default you will get the `ubuntu user` with passwordless sudo permission. So some scripts may have sudo commands and it will not ask password for ubuntu user, if your user doesn't have the passwordless sudo permission, either you can pass the password while running the script or configure the passwordless sudo permission  in `sudoers` file.
+   * 6 ubuntu-16.04 machines (`2 K8s Master` , `2 K8s WorkerNodes` , `1 Jenkins Server` and `1 K8s Manager Machine`) with moderate resources `(2 vCPUs, 4 GB RAM and 50 GB Hard Disk for each machines)` prefer `t2.medium` type machine.
+   * For production and for security, you can configure 4 machines without public ip address and 2 machines with public ip address (jenkins server and K8s Manager -- here `K8s manager` will act as `bastion host` for ssh to rest of the machines).
+   * In AWS ubuntu machine, by default you will get the `ubuntu user` with `passwordless sudo permission`. So some scripts may have sudo commands and it will not ask password for ubuntu user, if your user doesn't have the passwordless sudo permission, either you can pass the password while running the script or configure the passwordless sudo permission  in `sudoers` file.
    * Load balancer for access the the services like HA k8s master, grafana, kibana, guestbook-frontend (with help of NodePort, you can access all of these services except HA k8s master as follow : `http://WorkerNode_IP:NodePort`). In this demo I am showing how to use AWS ELB for access our services from outside.
-   * `2 Security Group`, one with enable all internal communication within the default VPC and another one for enable access for the NodePort and http ports from ELB.
+   * `2 Security Group`, one with enable all internal communication within the default VPC and another one for enable access for the NodePort and http ports from ELB. for testing purpose and to simplify this step, you can create one security group with inbound and outbound connection enables for all ports. and use this `security group` for both AWS ELB and instances (don't use it in production)
 
 2. Kubernetes version : 1.8+   # [metrics-server](https://github.com/kubernetes-incubator/metrics-server) configured here support kubernetes version 1.8 or higher.
 
-3. Local system requirement
-   * Ubuntu Machine (Optional, we are configuring `K8s Manager Machine` as your local system where you can access the entire services)
-   * kubectl
+3. Local system requirement (Optional, we are configuring `K8s Manager Machine` as your local system where you can access the entire services)
+   * Ubuntu Machine
+   * [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+   * [helm](https://git.io/get_helm.sh)
+
+
 
 ## Highly available Kubernetes cluster
 
@@ -23,6 +47,7 @@
 
 You will find the scripts also there for configure the K8s Manager...!
 Note :: you have to configure the K8s Manager with `admin.conf` file once the k8s cluster created. you may need this in upcoming steps.
+
 
 
 ## CI/CD pipeline using Jenkins
@@ -68,31 +93,13 @@ This script will configure the helm in your kubernetes cluster and will install 
 
 you will find the script under `scripts folder`
 
-Once you configured the jenkins, you have to access it form web ui in order to do a basic setup for jenkins. for that you have to configure AWS ELB with the following details.
+Once you configured the jenkins, you have to access it form web ui and need to do some basic setup for jenkins (adding some plugins and configuring admin password). You can use the public ip address of the jenkins machine to access the jenkins web ui.
 
-
-*Health check*
-
-```
-Ping Target             HTTP:8080/
-Timeout                 5 seconds
-Interval                30 seconds
-Unhealthy threshold     2
-Healthy threshold       10
-```
-
-*listeners*
-
-| Load Balancer Protocol | Load Balancer Port | Instance Protocol | Instance Port | Cipher | SSL Certificate |
-| ---------------------- | ------------------ | ----------------- | ------------- | ------ | --------------- |
-| http | 80 | http | 8080 | N/A | N/A |
-
-
-Add your `Jenkins machine` instance to the ELB, wait for some time and try to access the jenkins ui from outside with your AWS ELB address. (incase if you are not able to access it check the security group of your instances and AWS ELB -- ensure that all ports are able to access from outside)
+(incase if you are not able to access it check the security group of your instances -- ensure that 8080 port are able to access from outside)
 
 
 
-## Deploy GuestBook application
+## Deploy GuestBook Application
 
 You can take a look into my [Helm Chart](https://github.com/akhilrajmailbox/GuestBook/tree/master/guestbook). 
 
@@ -160,6 +167,7 @@ Healthy threshold       10
 
 
 Add your `K8s master` and `K8s slave` instances to the ELB, wait for some time and try to access the guestbook from outside with your AWS ELB address. (incase if you are not able to access it check the security group of your instances and AWS ELB -- ensure that all ports are able to access from outside)
+
 
 
 ## Prometheus & Grafana
@@ -237,6 +245,7 @@ Healthy threshold       10
 
 
 
+
 ## EFK (Elasticsearch, Fluentd and Kibana)
 
 You can deploy and Configure EFK in K8s Cluster by running the [efk.sh](https://raw.githubusercontent.com/akhilrajmailbox/GuestBook/master/scripts/efk.sh) script.
@@ -273,6 +282,7 @@ Healthy threshold       10
 
 
 
+
 ## Blue/Green and Canary Deployment
 
 In this demo, we are upgrading the Guestbook Deployment which we did before. To show the demo, Im Changing the background color of the application. by default it is white , you saw it already if you deployed the Guestbook and you can access the latest Guestbook application with the same AWS ELB which you created before for the guestbook application.
@@ -288,6 +298,7 @@ Please find the below table to understand the `Background Colour` for each strat
 
 
 
+
 ### Blue/Green Deployment of GuestBook Application
 
 Note :: Assuming that the GuestBook Application that you deployed from jenkins is up and running.
@@ -300,6 +311,8 @@ cd scripts/
 ```
 
 Once the deployment done with the `blue-green.sh` script, try to access the guestbook application with your Load Balancer, refresh many time to reflect your changes, or try from `incognito` to see the latest changes (green background colour) without any downtime.
+
+
 
 
 ### Canary Deployment of GuestBook Application
@@ -318,7 +331,7 @@ rollout     : 	Delete Old release (stable release) and scale up canary release, 
 ```
 
 
-#### steps :
+#### steps
 
 1. run the script with deploy option, tjhis will deploy canary release along with stable release. So each release that will receive the live traffic.
 
