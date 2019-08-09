@@ -235,7 +235,7 @@ Wohhoooo!!! We are done!!!
 
 Copy the "/etc/kubernetes/admin.conf" from your master node and paste it "K8s-Manager-home-folder/.kube/config" of K8s-Manager server
 
-replace the server: entry with your ELB address. so the config file in K8s-Manager server should look like this :
+replace the `server:` entry with your ELB address. so the config file in K8s-Manager server should look like this :
 
 ```
 apiVersion: v1
