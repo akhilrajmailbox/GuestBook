@@ -62,7 +62,7 @@ Use one ubuntu 16.04 machine from the 6 machines which we created before. You ca
 
 2. Clone the repository
 
-3. run the following commands within the cloned location
+3. run the following commands within the cloned location as `root` user
 
 ```
 $ git clone https://github.com/akhilrajmailbox/GuestBook.git
