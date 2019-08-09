@@ -58,7 +58,7 @@ take all Instances Ip Addresses and save it for next steps :
 |  k8s-node-1   |  172.31.36.146  |
 |  k8s-node-2   |  172.31.38.245  |
 |  k8s-node-3   |  172.31.38.147  |
-|  k8s-node-4   |  172.31.38.249  |
+|  k8s-node-4   |  172.31.38.149  |
 
 
 
