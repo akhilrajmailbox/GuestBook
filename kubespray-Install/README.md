@@ -32,9 +32,9 @@ This script will download and configure all the dependencies and will clone the 
 login to K8s Manager Machine over ssh, use the default user (ubuntu). then run the following commands
 
 ```
-git clone https://github.com/akhilrajmailbox/GuestBook.git
-cd GuestBook/kubespray-Install/
-./K8s_Manager.sh
+$ git clone https://github.com/akhilrajmailbox/GuestBook.git
+$ cd GuestBook/kubespray-Install/
+$ ./K8s_Manager.sh
 ```
 
 Note:   While installing all requirements packages, if you get errors related to “requests” package, follow the steps below:
@@ -132,7 +132,7 @@ $ cp -rfp inventory/sample inventory/mycluster
 ### Configure Load Balancer address in "k8s-cluster.yml" for ssl validation with [ELB we created before](#Load-Balancer) 
 
 ```
-vim inventory/mycluster/group_vars/k8s-cluster/k8s-cluster.yml
+$ vim inventory/mycluster/group_vars/k8s-cluster/k8s-cluster.yml
 ```
 search for "supplementary_addresses_in_ssl_keys" in the file and update the line with your ELB address as follow
 assuming the my ELB address is  : ```k8s-master-876887687.us-east-1.elb.amazonaws.com```
