@@ -213,6 +213,7 @@ $ ansible-playbook -i inventory/mycluster/hosts.yaml cluster.yml --private-key=K
 Now SSH into the Master Node and check your installation
 
 ```
+$ sudo su
 $ export KUBECONFIG=/etc/kubernetes/admin.conf
 ```
 
