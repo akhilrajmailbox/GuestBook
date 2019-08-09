@@ -72,7 +72,7 @@ $ ./jenkins.sh
 
 After running the script in jenkins server, you have to copy `admin.conf` file from K8s manager server (the kubernetes config file updated with ELB Ip Address for accessing multi master k8s.) to `/var/lib/jenkins/.kube/config` in jenkins server.
 
-try to access kubernetes server from jenkins by following commands
+give permission for jenkins user for its home folder `/var/lib/jenkins`
 
 ```
 $ chown -R jenkins:jenkins /var/lib/jenkins   # as root user
@@ -82,6 +82,8 @@ switch user to jenkins
 ```
 $ su jenkins
 ```
+
+try to access kubernetes server from jenkins by following commands
 
 ```
 $ export KUBECONFIG=/var/lib/jenkins/.kube/config
