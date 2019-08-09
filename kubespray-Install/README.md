@@ -55,7 +55,7 @@ take all Instances Ip Addresses and save it for next steps :
 |  k8s-manager   |  172.31.33.234  |
 |  k8s-master-1   |  172.31.33.235  |
 |  k8s-master-2    |  172.31.45.66  |
-|  k8s-node-2   |  172.31.36.146  |
+|  k8s-node-1   |  172.31.36.146  |
 |  k8s-node-2   |  172.31.38.245  |
 
 
@@ -89,7 +89,7 @@ Navigate into the kubespray folder
 $ cd kubespray
 ```
 
-Now you can either copy the pem file which you used to create the cluster on AWS into this directory from your local machine OR just copy the contents into a new file on the k8s Manager.
+Now you can either copy the pem file which you used to create the instances on AWS into this directory from your local machine OR just copy the contents into a new file on the k8s Manager.
 
 View the contents of K8s.pem file on your local machine using the command line.
 
@@ -145,6 +145,8 @@ supplementary_addresses_in_ssl_keys: [k8s-master-876887687.us-east-1.elb.amazona
 Since I will be creating a 2 master 2 node cluster, I have accordingly updated the inventory file. Update Ansible inventory file with inventory builder. Run the following commands to update the inventory file
 
 Replace the sample IP’s with Private IP’s of the newly created instances before running the command
+
+`example :: declare -a IPS=(k8s-master-1 k8s-master-2 k8s-node-1 k8s-node-2)`
 
 ```
 $ cd kubespray
