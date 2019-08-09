@@ -144,7 +144,7 @@ curl -s https://raw.githubusercontent.com/akhilrajmailbox/GuestBook/master/scrip
 ```
 
 
-Once you deploy the GuestBook successfully from Jenkins, Kubernetes will automatically assign one `NodePort` to your application. Go to jenkins current build console and take the `NodePort` of your deployment. (you may need this for configuring the AWS ELB)
+Once you deploy the GuestBook successfully from Jenkins, Kubernetes will automatically assign one `NodePort` to your application. Go to jenkins current build console and take the `NodePort` of your deployment. (you may need this for configuring the AWS ELB -- Classic Load balancer)
 
 Assuming that My Deployment get `NodePort : 30427`
 

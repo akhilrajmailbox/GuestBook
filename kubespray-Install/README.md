@@ -61,12 +61,12 @@ take all Instances Ip Addresses and save it for next steps :
 
 
 
-## Load-Balancer
+## Load-Balancer (Classic Load balancer)
 
 If you are using AWS / GCP or any other cloud services, then use their Load Balancer (ELB in AWS), because manual configure nginx / apache2 proxy will serve same like cloud Load Balancer but not an HA.
 
 
-We have to configure the ELB in aws to get the CNAME for Load Balancer. this url required for configurinmg the cluster (need to add this domain address as a "supplementary_addresses_in_ssl_keys" for ssl certificates of cluster)
+We have to configure the Classic Load balancer in aws to get the CNAME for Load Balancer. this url required for configurinmg the cluster (need to add this domain address as a "supplementary_addresses_in_ssl_keys" for ssl certificates of cluster)
 
 Create one classic Load Balancer in AWS before start configuring the kubernetes cluster with following  parameters.
 
