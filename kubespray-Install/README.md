@@ -8,7 +8,7 @@ There are multiple ways to set up a Kubernetes Cluster. One of them is using Kub
 I have an AWS account, I will be using it to spin up 5 Ubuntu machines. (2 master 2 node cluster and 1 K8s Manager [ Machine for accessing all server and configuring Kubespray ])
 
 OS: Ubuntu 16.04
-Number of Instances: 5
+Number of Instances: 8
 Configure all Instances with same ssh key
 The ssh user for ubuntu system in AWS have passwordless sudo permission
 configure Security group for all vm
@@ -55,6 +55,7 @@ take all Instances Ip Addresses and save it for next steps :
 |  k8s-manager   |  172.31.33.234  |
 |  k8s-master-1   |  172.31.33.235  |
 |  k8s-master-2    |  172.31.45.66  |
+|  k8s-master-3    |  172.31.45.67  |
 |  k8s-node-1   |  172.31.36.146  |
 |  k8s-node-2   |  172.31.38.245  |
 |  k8s-node-3   |  172.31.38.147  |
@@ -206,18 +207,23 @@ all:
       access_ip: 172.31.38.245
       ansible_host: 172.31.38.245
     node5:
-      ip: 172.31.36.146
-      access_ip: 172.31.36.146
+      ip: 172.31.36.147
+      access_ip: 172.31.36.147
       ansible_host: 172.31.36.147
     node6:
-      ip: 172.31.38.245
-      access_ip: 172.31.38.245
+      ip: 172.31.38.149
+      access_ip: 172.31.38.149
       ansible_host: 172.31.38.149
+    node7:
+      ip: 172.31.38.72
+      access_ip: 172.31.38.72
+      ansible_host: 172.31.38.72
   children:
     kube-master:
       hosts:
         node1:
         node2:
+        node3:
     kube-node:
       hosts:
         node1:
@@ -226,6 +232,7 @@ all:
         node3:
         node5:
         node6:
+        node7:
     etcd:
       hosts:
         node1:

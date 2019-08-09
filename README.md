@@ -24,7 +24,7 @@ Table of contents
 ## Requirement
 
 1. AWS Account
-   * 8 ubuntu-16.04 machines with Internet access (`2 K8s Master` , `4 K8s WorkerNodes` , `1 Jenkins Server` and `1 K8s Manager Machine`) with moderate resources `(2 vCPUs, 4 GB RAM and 50 GB Hard Disk for each machines)` prefer `t2.medium` type machine.
+   * 9 ubuntu-16.04 machines with Internet access (`3 K8s Master` , `4 K8s WorkerNodes` , `1 Jenkins Server` and `1 K8s Manager Machine`) with moderate resources `(2 vCPUs, 4 GB RAM and 50 GB Hard Disk for each machines)` prefer `t2.medium` type machine.
    * In AWS ubuntu machine, by default you will get the `ubuntu user` with `passwordless sudo permission`. So some scripts may have sudo commands and it will not ask password for ubuntu user, if your user doesn't have the passwordless sudo permission, either you can pass the password while running the script or configure the passwordless sudo permission  in `sudoers` file.
    * Load balancer for access the the services like HA k8s master, grafana, kibana, guestbook-frontend (with help of NodePort, you can access all of these services except HA k8s master as follow : `http://WorkerNode_IP:NodePort`). In this demo I am showing how to use AWS ELB for access our services from outside.
    * `2 Security Group`, one with enable all internal communication within the default VPC and another one for enable access for the NodePort and http ports from ELB. for testing purpose and to simplify this step, you can create one security group with inbound and outbound connection enables for all ports. and use this `security group` for both AWS ELB and instances (don't use it in production)
@@ -56,7 +56,7 @@ Note :: you have to configure the K8s Manager with `admin.conf` file once the k8
 Note : Assumning that you are successfully configured the Multi master Kubernetes Cluster (you  may required the admin.conf file from the previous steps.)
 
 
-Use one ubuntu 16.04 machine from the 6 machines which we created before. You can find the [jenkins.sh](https://raw.githubusercontent.com/akhilrajmailbox/GuestBook/master/scripts/jenkins.sh) scripts under `scripts folder` for install and configure jenkins in ubuntu machine without any worries.
+Use one ubuntu 16.04 machine from the 9 machines which we created before. You can find the [jenkins.sh](https://raw.githubusercontent.com/akhilrajmailbox/GuestBook/master/scripts/jenkins.sh) scripts under `scripts folder` for install and configure jenkins in ubuntu machine without any worries.
 
 1. ssh to jenkins machine
 
