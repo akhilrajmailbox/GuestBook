@@ -7,12 +7,12 @@ Table of contents
 <!--ts-->
    * [Requirement](#Requirement)
    * [Highly available Kubernetes cluster](#Highly-available-Kubernetes-cluster)
-   * [CI/CD pipeline using Jenkins](#CI-/CD-pipeline-using-Jenkins)
+   * [CI-CD pipeline using Jenkins](#CI-CD-pipeline-using-Jenkins)
    * [Deploy GuestBook Application](#Deploy-GuestBook-Application)
-   * [Prometheus & Grafana](#Prometheus-&-Grafana)
-   * [EFK (Elasticsearch, Fluentd and Kibana)](#EFK-(Elasticsearch,-Fluentd-and-Kibana))
-   * [Blue/Green and Canary Deployment](#Blue/Green-and-Canary-Deployment)
-      * [Blue/Green Deployment of GuestBook Application](#Blue/Green-Deployment-of-GuestBook-Application)
+   * [Prometheus & Grafana](#Prometheus-and-Grafana)
+   * [EFK (Elasticsearch, Fluentd & Kibana)](#Elasticsearch-Fluentd-and-Kibana)
+   * [Blue-Green and Canary Deployment](#Blue-Green-and-Canary-Deployment)
+      * [Blue-Green Deployment of GuestBook Application](#Blue-Green-Deployment-of-GuestBook-Application)
       * [Canary Deployment of GuestBook Application](#Canary-Deployment-of-GuestBook-Application)
         * [steps](#steps)
 <!--te-->
@@ -50,7 +50,7 @@ Note :: you have to configure the K8s Manager with `admin.conf` file once the k8
 
 
 
-## CI/CD pipeline using Jenkins
+## CI-CD pipeline using Jenkins
 
 Note : Assumning that you are successfully configured the Multi master Kubernetes Cluster (you  may required the admin.conf file from the previous steps.)
 
@@ -170,7 +170,7 @@ Add your `K8s master` and `K8s slave` instances to the ELB, wait for some time a
 
 
 
-## Prometheus & Grafana
+## Prometheus and Grafana
 
 Note : Assumning that you are successfully configured the Multi master Kubernetes Cluster and K8s Manager machine to connect to K8s cluster with kubectl and helm commands.
 
@@ -246,7 +246,7 @@ Healthy threshold       10
 
 
 
-## EFK (Elasticsearch, Fluentd and Kibana)
+## Elasticsearch Fluentd and Kibana
 
 You can deploy and Configure EFK in K8s Cluster by running the [efk.sh](https://raw.githubusercontent.com/akhilrajmailbox/GuestBook/master/scripts/efk.sh) script.
 
@@ -283,7 +283,7 @@ Healthy threshold       10
 
 
 
-## Blue/Green and Canary Deployment
+## Blue-Green and Canary Deployment
 
 In this demo, we are upgrading the Guestbook Deployment which we did before. To show the demo, Im Changing the background color of the application. by default it is white , you saw it already if you deployed the Guestbook and you can access the latest Guestbook application with the same AWS ELB which you created before for the guestbook application.
 
@@ -299,7 +299,7 @@ Please find the below table to understand the `Background Colour` for each strat
 
 
 
-### Blue/Green Deployment of GuestBook Application
+### Blue-Green Deployment of GuestBook Application
 
 Note :: Assuming that the GuestBook Application that you deployed from jenkins is up and running.
 
