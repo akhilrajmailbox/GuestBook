@@ -57,6 +57,8 @@ take all Instances Ip Addresses and save it for next steps :
 |  k8s-master-2    |  172.31.45.66  |
 |  k8s-node-1   |  172.31.36.146  |
 |  k8s-node-2   |  172.31.38.245  |
+|  k8s-node-3   |  172.31.38.147  |
+|  k8s-node-4   |  172.31.38.249  |
 
 
 
@@ -203,6 +205,14 @@ all:
       ip: 172.31.38.245
       access_ip: 172.31.38.245
       ansible_host: 172.31.38.245
+    node5:
+      ip: 172.31.36.146
+      access_ip: 172.31.36.146
+      ansible_host: 172.31.36.147
+    node6:
+      ip: 172.31.38.245
+      access_ip: 172.31.38.245
+      ansible_host: 172.31.38.149
   children:
     kube-master:
       hosts:
@@ -214,6 +224,8 @@ all:
         node2:
         node4:
         node3:
+        node5:
+        node6:
     etcd:
       hosts:
         node1:
