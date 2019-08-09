@@ -5,9 +5,8 @@
 
 ################################################
 function helm_config() {
-    echo "installing helm in your system"
-    curl -L https://git.io/get_helm.sh | bash
-
+    # echo "installing helm in your system"
+    # curl -L https://git.io/get_helm.sh | bash
 
     kubectl create serviceaccount --namespace kube-system tiller
     kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller

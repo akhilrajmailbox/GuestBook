@@ -26,6 +26,10 @@ function jenkins_install() {
 #################################
 function kubectl_install() {
     jenkins_install
+    ## configure helm
+    echo "installing helm in your system"
+    curl -L https://git.io/get_helm.sh | bash
+    
     ## Configuring kubectl
     apt-get update && sudo apt-get install -y apt-transport-https
     curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -

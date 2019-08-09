@@ -260,6 +260,13 @@ Exit from the K8s-Manager server terminal, then ssh to that machine again. then 
 $ kubectl get nodes
 ```
 
+If you are able to access the kubernetes Cluster, then you can configure helm in in the cluster by running the script [helm-configure.sh](https://raw.githubusercontent.com/akhilrajmailbox/GuestBook/master/scripts/helm-configure.sh).
+
+
+```
+$ cd scripts/
+$ ./helm-configure.sh
+```
 
 
 ## Additional steps might be needed while working with K8s cluster (Not Required for this Demo)

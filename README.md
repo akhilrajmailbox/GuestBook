@@ -89,13 +89,13 @@ try to access kubernetes server from jenkins by following commands
 $ export KUBECONFIG=/var/lib/jenkins/.kube/config
 $ kubectl get ns
 ```
+If you are able to access kubernetes cluster form jenkins server as jenkins user, the configure helm in jenkins server
+NOTE : Assuming that you are already configured the helm in kubernetes cluster by running the script [helm-configure.sh](https://raw.githubusercontent.com/akhilrajmailbox/GuestBook/master/scripts/helm-configure.sh) in `K8s Manager Machine`
 
 
-If everything is working fine, then run the script [helm-configure.sh](https://raw.githubusercontent.com/akhilrajmailbox/GuestBook/master/scripts/helm-configure.sh) in jenkins server as jenkins user.
-
-This script will configure the helm in your kubernetes cluster and will install helm utility in jenkins server.
-
-you will find the script under `scripts folder`
+```
+$ helm init --client-only
+```
 
 Once you configured the jenkins, you have to access it form web ui and need to do some basic setup for jenkins (adding some plugins and configuring admin password). You can use the public ip address of the jenkins machine to access the jenkins web ui.
 
