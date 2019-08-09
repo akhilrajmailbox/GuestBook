@@ -38,6 +38,7 @@ function guestbook_install() {
 
 ################################################
 function efk_info() {
+    guestbook_install
     if [[ $(kubectl -n $K8S_NAMESPACE get services guestbook -o jsonpath="{.spec.type}") == NodePort ]] ; then
         export NODE_PORT=$(kubectl get --namespace $K8S_NAMESPACE -o jsonpath="{.spec.ports[0].nodePort}" services guestbook)
         export NODE_IP=$(kubectl get nodes --namespace $K8S_NAMESPACE -o jsonpath="{.items[0].status.addresses[0].address}")
