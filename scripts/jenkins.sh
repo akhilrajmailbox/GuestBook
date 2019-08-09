@@ -13,7 +13,7 @@ function locale_config() {
 function jenkins_install() {
     locale_config
     apt-get update
-    apt-get install sudo curl wget unzip nano -y
+    apt-get install sudo curl wget unzip nano git -y
     apt-get install openjdk-8-jdk -y
     export JAVA_HOME=/usr/lib/jvm/openjdk-8-jdk
     export PATH=$PATH:$JAVA_HOME/bin:/usr/sbin:/sbin:/usr/local/sbin
