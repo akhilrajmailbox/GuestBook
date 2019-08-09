@@ -1,21 +1,26 @@
 #!/bin/bash
 
 #################################
+function locale_config() {
+    export LC_ALL="en_US.UTF-8"
+    export LC_CTYPE="en_US.UTF-8"
+    # sudo dpkg-reconfigure locales
+    # sudo update-locale LANG=en_US.UTF-8
+    sudo dpkg-reconfigure --frontend noninteractive locales
+}
+
+#################################
 function jenkins_install() {
+    locale_config
     apt-get update
     apt-get install sudo curl wget unzip nano -y
     apt-get install openjdk-8-jdk -y
     export JAVA_HOME=/usr/lib/jvm/openjdk-8-jdk
     export PATH=$PATH:$JAVA_HOME/bin:/usr/sbin:/sbin:/usr/local/sbin
+    wget -q -O - https://pkg.jenkins.io/debian/jenkins-ci.org.key | sudo apt-key add -
+    echo deb https://pkg.jenkins.io/debian-stable binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list
+    apt-get update
     apt-get install jenkins -y
-
-    apt-get install -y kubectl
-    mkdir -p /var/lib/jenkins/.kube
-    touch /var/lib/jenkins/.kube/config
-    echo "export KUBECONFIG=/var/lib/jenkins/.kube/config" >> /var/lib/jenkins/.bashrc
-    echo "export JAVA_HOME=/usr/lib/jvm/openjdk-8-jdk" >> /var/lib/jenkins/.bashrc
-    echo "export PATH=$PATH:$JAVA_HOME/bin:/usr/sbin:/sbin:/usr/local/sbin" >> /var/lib/jenkins/.bashrc
-    chown -R jenkins:jenkins /var/lib/jenkins
 }
 
 #################################
@@ -29,7 +34,10 @@ function kubectl_install() {
     apt-get install -y kubectl
     mkdir /var/lib/jenkins/.kube
     touch /var/lib/jenkins/.kube/config
-    chown -R jenkins:jenkins /var/lib/jenkins
+    echo "export KUBECONFIG=/var/lib/jenkins/.kube/config" >> /var/lib/jenkins/.bashrc
+    echo "export JAVA_HOME=/usr/lib/jvm/openjdk-8-jdk" >> /var/lib/jenkins/.bashrc
+    echo "export PATH=$PATH:$JAVA_HOME/bin:/usr/sbin:/sbin:/usr/local/sbin" >> /var/lib/jenkins/.bashrc
+    chown -R jenkins:jenkins /var/lib/jenkins    
     /etc/init.d/jenkins start
 }
 
