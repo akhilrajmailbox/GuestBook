@@ -184,7 +184,9 @@ Add your `K8s master` and `K8s slave` instances to the ELB, wait for some time a
 
 Note : Assumning that you are successfully configured the Multi master Kubernetes Cluster and K8s Manager machine to connect to K8s cluster with kubectl and helm commands.
 
-run these two commands to ensure that you are able to access the kubernetes cluster from your K8s Manager Machine.
+run these two commands to ensure that you are able to access the kubernetes cluster from your `K8s Manager Machine`.
+
+ssh to `K8s Manager Machine`
 
 ```
 $ kubectl get ns
@@ -201,8 +203,14 @@ As long as we don't have a `persistent storage` in manual configured K8s Cluster
 
 For configuring the `persistent storage` in our Kubernetes Cluster, run the [rook-block.sh](https://raw.githubusercontent.com/akhilrajmailbox/GuestBook/master/scripts/Rook.sh) scripts.
 
+Clone the [GuestBook]() if you don't have it in k8s manager
 ```
-$ cd scripts/
+git clone https://github.com/akhilrajmailbox/GuestBook.git
+```
+
+
+```
+$ cd GuestBook/scripts/
 $ ./rook-block.sh
 ```
 
@@ -225,7 +233,7 @@ You can change the default password for `admin` user by passing you custom passw
 Configure your monitoring Servers on namespace `monitoring` by running the [prometheus-grafana.sh](https://raw.githubusercontent.com/akhilrajmailbox/GuestBook/master/scripts/prometheus-grafana.sh) script from `K8s Manager`
 
 ```
-$ cd scripts/
+$ cd GuestBook/scripts/
 $ ./prometheus-grafana.sh
 ```
 
@@ -262,7 +270,7 @@ You can deploy and Configure EFK in K8s Cluster by running the [efk.sh](https://
 
 
 ```
-$ cd scripts/
+$ cd GuestBook/scripts/
 $ ./efk.sh
 ```
 
@@ -315,7 +323,7 @@ Note :: Assuming that the GuestBook Application that you deployed from jenkins i
 You can deploy Latest version of `GuestBook` application in K8s Cluster by running the [blue-green.sh](https://raw.githubusercontent.com/akhilrajmailbox/GuestBook/master/scripts/blue-green.sh) script.
 
 ```
-$ cd scripts/
+$ cd GuestBook/scripts/
 $ ./blue-green.sh
 ```
 
@@ -344,7 +352,7 @@ rollout     : 	Delete Old release (stable release) and scale up canary release, 
 1. run the script with deploy option, tjhis will deploy canary release along with stable release. So each release that will receive the live traffic.
 
 ```
-$ cd scripts/
+$ cd /GuestBook/scripts/
 $ ./canary.sh -o deploy
 ```
 
@@ -355,7 +363,7 @@ Refresh your web page many time to see the changes, you can notice the backgroun
 for that you can use the following command
 
 ```
-$ cd scripts/
+$ cd GuestBook/scripts/
 $ ./canary.sh -o rollout
 ```
 
