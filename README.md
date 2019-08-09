@@ -99,6 +99,12 @@ $ helm init --client-only
 
 Once you configured the jenkins, you have to access it form web ui and need to do some basic setup for jenkins (adding some plugins and configuring admin password). You can use the public ip address of the jenkins machine to access the jenkins web ui.
 
+```
+http://JENKINS_SERVER_IP:8080
+```
+
+Configure password for  `admin` user and seetup your jenkins.
+
 (incase if you are not able to access it check the security group of your instances -- ensure that 8080 port are able to access from outside)
 
 [:hourglass: Table of contents](#Table-of-contents)
