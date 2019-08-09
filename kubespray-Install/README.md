@@ -183,12 +183,15 @@ all:
         node2:
     kube-node:
       hosts:
-        node3:
+        node1:
+        node2:
         node4:
+        node3:
     etcd:
       hosts:
         node1:
         node2:
+        node3:
     k8s-cluster:
       children:
         kube-master:
