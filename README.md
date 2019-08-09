@@ -264,6 +264,20 @@ Healthy threshold       10
 [:hourglass: Table of contents](#Table-of-contents)
 
 
+
+NOTE :: If your application not starting up, then check the logs for the pods. if tha is related to the `pvc`, then check the `rook` deployment, try to recreate it, the previous deployment for rook may be get failed due to lack of resources.
+
+delete all rook configuration and create it
+
+```
+kubectl delete -f rook-block/
+```
+
+```
+kubectl get secret rook-rook-user -oyaml | sed "/resourceVer/d;/uid/d;/self/d;/creat/d;/namespace/d" | kubectl -n monitoring apply -f -
+```
+
+
 ## Elasticsearch Fluentd and Kibana
 
 You can deploy and Configure EFK in K8s Cluster by running the [efk.sh](https://raw.githubusercontent.com/akhilrajmailbox/GuestBook/master/scripts/efk.sh) script.
