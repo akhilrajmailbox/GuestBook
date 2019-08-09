@@ -144,7 +144,7 @@ for configuring the CI/CD from jenkins to deploy the guestbook application in ku
 
 2. create jenkins job
 
-3. Configure the jenkins job with `Source Code Management`:`Git` and configure it with this our `guestbook` repo : `https://github.com/akhilrajmailbox/GuestBook.git`
+3. Configure the jenkins job with `Source Code Management`:`Git` {Branch : master} and configure it with this our `guestbook` repo : `https://github.com/akhilrajmailbox/GuestBook.git`
 
 4. In `Build` area, choose `execute shell` from `Add build step` and add the build [script](https://raw.githubusercontent.com/akhilrajmailbox/GuestBook/master/scripts/build.sh) as follow.
 
