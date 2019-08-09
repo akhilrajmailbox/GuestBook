@@ -114,7 +114,7 @@ Configure password for  `admin` user and seetup your jenkins.
 
 You can take a look into my [Helm Chart](https://github.com/akhilrajmailbox/GuestBook/tree/master/guestbook). 
 
-There are lots of custom parameters i configured in order to customise the deployment with your needs, but for this demo, you don't need to do any parameter customisation and by default I gave all required parameters to the helm chart.
+There are lots of custom parameters I configured in order to customise the deployment with your needs, but for this demo, you don't need to do any parameter customisation and by default I gave all required parameters to the helm chart.
 
 In the coming steps (Blue/Green Deployment and Canary Deployment), you are going to use the same docker images and will update this deployment which you are going to deploy from jenkins.
 
@@ -129,7 +129,7 @@ Canary Deployment test          :       deploy new deployment with canary strate
 Note : for all of these test, you are going to access the guestbook ui with same url.
 
 
-For showcase the helm deployment, Blue/Green Deployment and Canary Deployment; I am using my own Custom docker image (Updated the existing docker image for guestbook) for guestbook Deployment.
+For showcase the helm deployment, [Blue/Green Deployment](#Blue-Green-Deployment-of-GuestBook-Application) and [Canary Deployment](#Canary-Deployment-of-GuestBook-Application); I am using my own Custom docker image (Updated the existing docker image for guestbook) for guestbook Deployment.
 
 ```
 akhilrajmailbox/guestbook:gb-frontend       :       GuestBook Frontend
