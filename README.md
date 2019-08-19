@@ -1,8 +1,7 @@
 # GuestBook
 
 
-Table of contents
-=================
+## Table of contents
 
 <!--ts-->
    * [Requirement](#Requirement)
