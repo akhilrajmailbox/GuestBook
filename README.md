@@ -1,11 +1,11 @@
-# GuestBook
+# GuestBook on Kubernetes (Production Ready)
 
 
 ## Table of contents
 
 <!--ts-->
    * [Requirement](#Requirement)
-   * [Highly available Kubernetes cluster](#Highly-available-Kubernetes-cluster)
+   * [Highly available Kubernetes cluster](#highly-available-kubernetes-cluster)
    * [CI-CD pipeline using Jenkins](#CI-CD-pipeline-using-Jenkins)
    * [Deploy GuestBook Application](#Deploy-GuestBook-Application)
    * [Prometheus & Grafana](#Prometheus-and-Grafana)
@@ -38,7 +38,7 @@
 [:hourglass: Table of contents](#Table-of-contents)
 
 
-## Highly available Kubernetes cluster
+## highly available kubernetes cluster
 
     In this Demo, I'm using kubespray with ansible to Create Multi-master/etcd cluster.
 [Go here](https://github.com/akhilrajmailbox/GuestBook/tree/master/kubespray-Install) and follow the steps for install and configure the HA K8s Cluster.
