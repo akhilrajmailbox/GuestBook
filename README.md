@@ -1,18 +1,18 @@
 # GuestBook on Kubernetes (Production Ready)
 
 
-## Table of contents
+## table of contents
 
 <!--ts-->
-   * [Requirement](#Requirement)
-   * [Highly available Kubernetes cluster](#highly-available-kubernetes-cluster)
-   * [CI-CD pipeline using Jenkins](#CI-CD-pipeline-using-Jenkins)
-   * [Deploy GuestBook Application](#Deploy-GuestBook-Application)
-   * [Prometheus & Grafana](#Prometheus-and-Grafana)
-   * [EFK (Elasticsearch, Fluentd & Kibana)](#Elasticsearch-Fluentd-and-Kibana)
-   * [Blue-Green and Canary Deployment](#Blue-Green-and-Canary-Deployment)
-      * [Blue-Green Deployment of GuestBook Application](#Blue-Green-Deployment-of-GuestBook-Application)
-      * [Canary Deployment of GuestBook Application](#Canary-Deployment-of-GuestBook-Application)
+   * [Requirement](#requirement)
+   * [Highly Available Kubernetes Cluster](#highly-available-kubernetes-cluster)
+   * [CI-CD pipeline using Jenkins](#ci-cd-pipeline-using-jenkins)
+   * [Deploy Guestbook Application](#deploy-guestbook-application)
+   * [Prometheus and Grafana](#prometheus-and-grafana)
+   * [EFK (Elasticsearch, Fluentd & Kibana)](#elasticsearch-fluentd-and-kibana)
+   * [Blue-Green and Canary Deployment](#blue-green-and-canary-deployment)
+      * [Blue-Green Deployment of GuestBook Application](#blue-green-deployment-of-guestBook-application)
+      * [Canary Deployment of GuestBook Application](#canary-deployment-of-guestBook-application)
         * [steps](#steps)
 <!--te-->
 
@@ -50,7 +50,7 @@ Note :: you have to configure the K8s Manager with `admin.conf` file once the k8
 [:hourglass: Table of contents](#Table-of-contents)
 
 
-## CI-CD pipeline using Jenkins
+## ci-cd pipeline using jenkins
 
 Note : Assumning that you are successfully configured the Multi master Kubernetes Cluster (you  may required the admin.conf file from the previous steps.)
 
@@ -109,7 +109,7 @@ Configure password for  `admin` user and seetup your jenkins.
 [:hourglass: Table of contents](#Table-of-contents)
 
 
-## Deploy GuestBook Application
+## deploy guestbook application
 
 You can take a look into my [Helm Chart](https://github.com/akhilrajmailbox/GuestBook/tree/master/guestbook). 
 
@@ -179,7 +179,7 @@ Add your `K8s master` and `K8s slave` instances to the ELB, wait for some time a
 [:hourglass: Table of contents](#Table-of-contents)
 
 
-## Prometheus and Grafana
+## prometheus and grafana
 
 Note : Assumning that you are successfully configured the Multi master Kubernetes Cluster and K8s Manager machine to connect to K8s cluster with kubectl and helm commands.
 
@@ -277,7 +277,7 @@ kubectl get secret rook-rook-user -oyaml | sed "/resourceVer/d;/uid/d;/self/d;/c
 ```
 
 
-## Elasticsearch Fluentd and Kibana
+## elasticsearch fluentd and kibana
 
 You can deploy and Configure EFK in K8s Cluster by running the [efk.sh](https://raw.githubusercontent.com/akhilrajmailbox/GuestBook/master/scripts/efk.sh) script.
 
@@ -314,7 +314,7 @@ Healthy threshold       10
 [:hourglass: Table of contents](#Table-of-contents)
 
 
-## Blue-Green and Canary Deployment
+## blue-green and canary deployment
 
 In this demo, we are upgrading the Guestbook Deployment which we did before. To show the demo, Im Changing the background color of the application. by default it is white , you saw it already if you deployed the Guestbook and you can access the latest Guestbook application with the same AWS ELB which you created before for the guestbook application.
 
@@ -329,7 +329,7 @@ Please find the below table to understand the `Background Colour` for each strat
 
 
 
-### Blue-Green Deployment of GuestBook Application
+### blue green deployment of guestBook application
 
 Note :: Assuming that the GuestBook Application that you deployed from jenkins is up and running.
 
@@ -344,7 +344,7 @@ Once the deployment done with the `blue-green.sh` script, try to access the gues
 
 
 
-### Canary Deployment of GuestBook Application
+### canary deployment of guestBook application
 
 Note :: Assuming that the GuestBook Application is up and running with latest changes that you have done with `blue / green deployment`.
 
