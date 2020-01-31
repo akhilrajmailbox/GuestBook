@@ -1,7 +1,7 @@
 # GuestBook on Kubernetes (Production Ready)
 
 
-## table of contents
+## table of Contents
 
 <!--ts-->
    * [Requirement](#requirement)
@@ -20,7 +20,7 @@
 
 
 
-## Requirement
+## requirement
 
 1. AWS Account
    * 9 ubuntu-16.04 machines with Internet access (`3 K8s Master` , `4 K8s WorkerNodes` , `1 Jenkins Server` and `1 K8s Manager Machine`) with moderate resources `(2 vCPUs, 8 GB RAM and 50 GB Hard Disk for each machines)` prefer `t2.large` type machine. (some of the deployment request limit is 4 GB RAM, so need this much resources for deploying our whole infra)
@@ -35,7 +35,7 @@
    * [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
    * [helm](https://git.io/get_helm.sh)
 
-[:hourglass: Table of contents](#Table-of-contents)
+[Table of contents](#table-of-contents)
 
 
 ## highly available kubernetes cluster
@@ -47,7 +47,7 @@
 You will find the scripts also there for configure the K8s Manager...!
 Note :: you have to configure the K8s Manager with `admin.conf` file once the k8s cluster created. you may need this in upcoming steps.
 
-[:hourglass: Table of contents](#Table-of-contents)
+[Table of contents](#table-of-contents)
 
 
 ## ci-cd pipeline using jenkins
@@ -106,7 +106,7 @@ Configure password for  `admin` user and seetup your jenkins.
 
 (incase if you are not able to access it check the security group of your instances -- ensure that 8080 port are able to access from outside)
 
-[:hourglass: Table of contents](#Table-of-contents)
+[Table of contents](#table-of-contents)
 
 
 ## deploy guestbook application
@@ -176,7 +176,7 @@ Healthy threshold       10
 
 Add your `K8s master` and `K8s slave` instances to the ELB, wait for some time and try to access the guestbook from outside with your AWS ELB address. (incase if you are not able to access it check the security group of your instances and AWS ELB -- ensure that all ports are able to access from outside)
 
-[:hourglass: Table of contents](#Table-of-contents)
+[Table of contents](#table-of-contents)
 
 
 ## prometheus and grafana
@@ -260,7 +260,7 @@ Healthy threshold       10
 | ---------------------- | ------------------ | ----------------- | ------------- | ------ | --------------- |
 | http | 80 | http | 30429 | N/A | N/A |
 
-[:hourglass: Table of contents](#Table-of-contents)
+[Table of contents](#table-of-contents)
 
 
 
@@ -311,7 +311,7 @@ Healthy threshold       10
 | ---------------------- | ------------------ | ----------------- | ------------- | ------ | --------------- |
 | http | 80 | http | 30434 | N/A | N/A |
 
-[:hourglass: Table of contents](#Table-of-contents)
+[Table of contents](#table-of-contents)
 
 
 ## blue-green and canary deployment
@@ -380,4 +380,4 @@ $ cd GuestBook/scripts/
 $ ./canary.sh -o rollout
 ```
 
-[:hourglass: Table of contents](#Table-of-contents)
+[Table of contents](#table-of-contents)
